@@ -16,9 +16,6 @@ class Tile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String flagImage =
-    //     'https://cdn-icons-png.flaticon.com/512/2164/2164733.png';
-
     return InkWell(
       onTap: onTap,
       child: Container(

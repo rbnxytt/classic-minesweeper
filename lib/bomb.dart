@@ -13,8 +13,12 @@ class Bomb {
       while (_position.contains(setBomb)) {
         setBomb = random.nextInt(100);
       }
-      _position.add(setBomb);
+
+      if (_position.length < 10) {
+        _position.add(setBomb);
+      }
     }
+    print(_position);
   }
 
   void clearBombs() {

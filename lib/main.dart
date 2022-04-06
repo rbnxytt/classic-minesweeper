@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_application/bomb.dart';
+import 'package:my_application/constants.dart';
 import 'package:my_application/grid_tile.dart';
 import 'package:my_application/time_controller.dart';
 import 'package:provider/provider.dart';
@@ -66,18 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       decoration: BoxDecoration(
                         color: const Color(0xffC6C6C6),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.white,
-                            blurRadius: 5.0,
-                            offset: -const Offset(4.0, 4.0),
-                          ),
-                          const BoxShadow(
-                            color: Color(0xff808080),
-                            blurRadius: 5.0,
-                            offset: Offset(4.0, 4.0),
-                          )
-                        ],
+                        boxShadow: kMainBoxShadow,
                       ),
                     ),
                     Column(
@@ -109,23 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                                color: Color(0xff808080),
-                                                width: 3.0),
-                                            left: BorderSide(
-                                                color: Color(0xff808080),
-                                                width: 3.0),
-                                            bottom: BorderSide(
-                                                color: Colors.white,
-                                                width: 3.0),
-                                            right: BorderSide(
-                                                color: Colors.white,
-                                                width: 3.0),
-                                          ),
-                                          color: Colors.black,
-                                        ),
+                                        decoration: numberBoxDecoration,
                                         child: const FittedBox(
                                           child: Text(
                                             '010',
@@ -144,7 +118,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: TextButton(
                                         onLongPress: () {
                                           bomb.clearBombs();
-
                                           setState(() {
                                             gridChild = null;
                                           });
@@ -156,30 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                           listenableTimeController.timer();
                                         },
                                         child: Container(
-                                          child: Transform.scale(
-                                            scale: 0.8,
-                                            child: Image.network(
-                                              'https://cdn-icons-png.flaticon.com/512/742/742751.png',
+                                            child: Transform.scale(
+                                              scale: 0.8,
+                                              child: Image.network(
+                                                'https://cdn-icons-png.flaticon.com/512/742/742751.png',
+                                              ),
                                             ),
-                                          ),
-                                          decoration: const BoxDecoration(
-                                            color: Color(0xffC6C6C6),
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                  color: Color(0xff808080),
-                                                  width: 5.0),
-                                              right: BorderSide(
-                                                  color: Color(0xff808080),
-                                                  width: 5.0),
-                                              top: BorderSide(
-                                                  color: Colors.white,
-                                                  width: 5.0),
-                                              left: BorderSide(
-                                                  color: Colors.white,
-                                                  width: 5.0),
-                                            ),
-                                          ),
-                                        ),
+                                            decoration: emojiBoxDecoration),
                                       ),
                                     ),
                                   ),
@@ -188,23 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                                color: Color(0xff808080),
-                                                width: 3.0),
-                                            left: BorderSide(
-                                                color: Color(0xff808080),
-                                                width: 3.0),
-                                            bottom: BorderSide(
-                                                color: Colors.white,
-                                                width: 3.0),
-                                            right: BorderSide(
-                                                color: Colors.white,
-                                                width: 3.0),
-                                          ),
-                                          color: Colors.black,
-                                        ),
+                                        decoration: numberBoxDecoration,
                                         child: FittedBox(
                                           child: Text(
                                             _currentTime(),
@@ -227,18 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 bottom: 12.5,
                                 top: 12.5),
                             child: Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                      color: Color(0xff808080), width: 5.0),
-                                  left: BorderSide(
-                                      color: Color(0xff808080), width: 5.0),
-                                  bottom: BorderSide(
-                                      color: Colors.white, width: 5.0),
-                                  right: BorderSide(
-                                      color: Colors.white, width: 5.0),
-                                ),
-                              ),
+                              decoration: tilesContainerDecoration,
                               child: GridView.builder(
                                   itemCount: 100,
                                   gridDelegate:
@@ -252,8 +181,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       onTap: () {
                                         if (bomb.position.contains(index)) {
                                           setState(() {
-                                            gridChild = Image.network(
-                                                'https://cdn-icons-png.flaticon.com/512/112/112683.png');
+                                            gridChild =
+                                                Image.network(flagImage);
                                           });
                                         }
                                       })),
